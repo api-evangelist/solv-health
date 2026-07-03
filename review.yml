@@ -1,0 +1,95 @@
+aid: solv-health
+name: Solv Health
+review:
+  question: Does Solv Health expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-03'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Solv Health publishes no public API
+    reference of any kind - REST, SSE, or WebSocket. The three confirmed API
+    capabilities (Final Mile, Booking Widget, EHR Interoperability) are
+    described in marketing copy only, with no protocol, endpoint, or schema
+    detail beyond "proprietary APIs," "plug-and-play APIs," and "standard
+    healthcare interfaces (APIs, HL7, FHIR, RPA)." There is no evidence of a
+    server-push, streaming, or bidirectional transport on any of them, so
+    there is no protocol surface to model in AsyncAPI.
+findings:
+  summary: |
+    Solv Health does not publish a documented public WebSocket API, and in
+    fact does not publish any public developer API reference at all. Solv
+    operates a free consumer marketplace (solvhealth.com, Solv app) for
+    same-day urgent care, primary care, and lab bookings, and a paid
+    provider/health-system platform sold through a sales-led, per-location
+    contract. Marketing pages confirm three API-shaped capabilities: (1) the
+    "Solv Final Mile" API/network, which hands patients off from virtual-care
+    partners (e.g. Included Health) to real-time same-day availability at
+    Solv's in-person urgent care network; (2) "interoperable APIs" that power
+    a white-labeled booking widget embedded on a partner's own website or
+    mobile app; and (3) bidirectional EHR interoperability - patient
+    demographics, appointment status, and documents synced with EHR/EMR
+    systems (Epic, Athena, Cerner, Allscripts, DrChrono, eClinicalWorks,
+    Experity, NextGen, Advanced) "through standard healthcare interfaces,
+    including APIs, HL7, FHIR, and robotic process automation (RPA)." None of
+    the three publish a base URL, endpoint path, request/response schema, or
+    self-serve credential flow anywhere on solvhealth.com. No WebSocket
+    (ws:// or wss://) endpoint is documented or implied for any of them.
+  accessModel: |
+    Gated / partner-provisioned. There is no public developer portal, no
+    api.solvhealth.com or docs.solvhealth.com, and no self-serve API key
+    signup. Clinics and health systems engage through a "request a demo" /
+    "request a quote" sales process; Solv's own developers configure the
+    Final Mile handoff, booking widget, and EHR sync per customer as part of
+    delivery, rather than publishing a shared, versioned public API surface.
+  transports:
+    - protocol: REST
+      scheme: https
+      documented: true
+      note: All three capabilities (Final Mile, Booking Widget, EHR Interoperability) are described only as "APIs" in marketing copy, implying HTTPS request/response, with no published base URL or endpoint reference.
+    - protocol: HL7 / FHIR
+      scheme: n/a
+      documented: true
+      note: EHR interoperability is described as using "standard healthcare interfaces, including APIs, HL7, FHIR, and robotic process automation (RPA)" - a mix of healthcare data standards and non-API automation, not a single documented API surface.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere on solvhealth.com, the for-providers pages, the integrations page, or the patient help center as of the review date.
+  endpointsPubliclyDocumented: []
+  endpointsNote: |
+    No concrete endpoint paths, base URLs, or request/response schemas are
+    published for the Final Mile, Booking Widget, or EHR Interoperability
+    capabilities. Only capability-level marketing language is publicly
+    available; each apis.yml entry for Solv Health is therefore honestly
+    marked endpointsModeled and carries no OpenAPI document, collection, or
+    endpoint list, to avoid fabricating a surface that Solv has not
+    disclosed.
+sources:
+  - url: https://www.solvhealth.com/for-providers/integrations
+    type: Documentation
+    note: States EHR sync via "standard healthcare interfaces, including APIs, HL7, FHIR, and robotic process automation (RPA)"; lists supported EHR/EMR systems.
+  - url: https://www.solvhealth.com/for-providers/health-systems
+    type: Documentation
+    note: States "plug-and-play APIs and dedicated developers" for custom digital patient experiences; no technical reference linked.
+  - url: https://www.solvhealth.com/for-providers/build
+    type: Documentation
+    note: References "Solv Final Mile APIs" connecting virtual and in-person care via real-time availability; no endpoint or base URL published.
+  - url: https://www.solvhealth.com/for-providers/pricing
+    type: Documentation
+    note: Confirms per-location, quote-based pricing (annual/quarterly/monthly); no API or developer tier disclosed.
+  - url: https://www.prnewswire.com/news-releases/solv-launches-final-mile-network-enabling-handoff-between-virtual-care-navigators-and-local-in-person-providers-to-complete-a-critical-path-in-the-care-continuum-301743169.html
+    type: Documentation
+    note: Announces the Solv Final Mile Network (Included Health as launch partner) as built on "proprietary APIs and tools"; no technical documentation.
+  - url: https://www.linkedin.com/company/solvhealth
+    type: LinkedIn
+    note: Official company LinkedIn page.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists, and Solv Health publishes no public
+    REST API reference either. Each apis.yml entry (Final Mile, Booking
+    Widget, EHR Interoperability) is scoped honestly as a modeled, gated
+    capability (endpointsModeled: true) with no baseURL, no OpenAPI document,
+    and no fabricated endpoint list, since Solv does not disclose those
+    details publicly.

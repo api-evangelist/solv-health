@@ -1,0 +1,84 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Solv Health
+providerId: solv-health
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Healthcare
+- Urgent Care
+- Plans
+- Sales-Led
+description: >-
+  Solv does not publish self-serve pricing, plan tiers, or an API rate card.
+  For clinics and health systems, Solv states "all Solv packages are priced
+  per location, not per user," billed on annual, quarterly, or monthly terms,
+  bundling scheduling, intake, patient acquisition, reputation management,
+  messaging, and payments; EHR integration and API/widget access vary by
+  package and are configured as part of onboarding. Prospects must "request a
+  quote" for a custom proposal - no numeric price, per-call fee, or usage rate
+  is disclosed publicly. The consumer-facing solvhealth.com marketplace and
+  Solv app are free for patients to search and book appointments.
+notes: >-
+  No published numeric pricing exists to reconcile. Verify current terms
+  directly with Solv sales; this file only reflects the qualitative
+  per-location, quote-based pricing model described on
+  solvhealth.com/for-providers/pricing.
+sources:
+- https://www.solvhealth.com/for-providers/pricing
+- https://www.solvhealth.com/for-providers
+- https://www.solvhealth.com/for-providers/integrations
+plans:
+- id: solv-health-consumer
+  name: Consumer Marketplace (Free)
+  type: free
+  description: >-
+    Patients search and book same-day urgent care, primary care, and lab
+    appointments on solvhealth.com or the Solv app at no cost.
+  entries:
+  - label: Patient Booking
+    name: patient-booking
+    type: flat
+    metric: bookings
+    limit: -1
+    timeFrame: month
+    geo: US
+    unit: 1
+    price: free
+    userMultiplied: false
+  elements:
+  - name: Search Nearby Availability
+  - name: Book Same-Day Appointments
+  - name: Save Insurance and Visit History
+- id: solv-health-clinic-custom
+  name: Clinic / Health System (Custom)
+  type: enterprise
+  description: >-
+    Per-location subscription for clinics and health systems, billed annually,
+    quarterly, or monthly, bundling scheduling, intake, patient acquisition,
+    reputation management, messaging, and payments. EHR interoperability,
+    booking-widget API access, and Final Mile network participation are scoped
+    per package inside a custom proposal.
+  entries:
+  - label: Custom Proposal
+    name: enterprise
+    type: usage
+    metric: locations
+    limit: -1
+    timeFrame: year
+    geo: US
+    unit: 1
+    price: contact sales; priced per location
+    userMultiplied: false
+  elements:
+  - name: Scheduling and Intake
+  - name: Patient Acquisition
+  - name: Reputation Management
+  - name: Text Messaging and Payments
+  - name: EHR Interoperability (varies by package)
+  - name: Booking Widget / Final Mile API Access (varies by package)
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,92 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Solv Health
+providerId: solv-health
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Healthcare
+- Urgent Care
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Solv Health spend. Solv is bought as a per-location clinic/
+  health-system subscription (annual, quarterly, or monthly), not metered
+  per-API-call; solvhealth.com states packages are "priced per location, not
+  per user" with cost dependent on the bundle of features (scheduling, intake,
+  patient acquisition, reputation management, messaging, payments, EHR
+  interoperability, Final Mile/widget API access) included in a custom
+  proposal. There is no published per-request, per-booking, or per-sync rate
+  for the Final Mile, Booking Widget, or EHR Interoperability capabilities,
+  since none of them are billed through a public metered API. The consumer
+  marketplace (solvhealth.com, Solv app) is free to patients.
+notes: >-
+  No public per-unit rates exist to reconcile. This file reflects only the
+  qualitative, per-location subscription model described on
+  solvhealth.com/for-providers/pricing; verify actual contract economics
+  directly with Solv sales.
+sources:
+- https://www.solvhealth.com/for-providers/pricing
+- https://www.solvhealth.com/for-providers/integrations
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Solv Health
+serviceCategory: Digital Health / Patient Scheduling Platform
+billingModel:
+  pricingCategory: Enterprise Contract
+  billingFrequency: Annual, Quarterly, or Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Solv Health Platform
+  ServiceCategory: Digital Health / Patient Scheduling Platform
+  ProviderName: Solv Health
+  PublisherName: Solv Health
+  InvoiceIssuerName: Solv Health
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Enterprise Contract
+meters:
+- name: locations
+  description: Number of clinic/health-system locations subscribed to Solv; the disclosed basis for per-location package pricing.
+  unit: locations
+  aggregation: count
+  dimensions:
+  - account
+  - region
+- name: ehr_sync_events
+  description: Bidirectional patient demographic, appointment, and document sync events between Solv and a connected EHR/EMR. Not separately metered publicly.
+  unit: events
+  aggregation: count
+  dimensions:
+  - account
+  - ehr_vendor
+- name: final_mile_handoffs
+  description: Virtual-to-in-person patient handoffs routed through the Solv Final Mile network/API. Not separately metered publicly.
+  unit: handoffs
+  aggregation: count
+  dimensions:
+  - account
+  - partner
+principles:
+- name: Visibility
+  description: Track subscribed locations and which package tier (and therefore which API/EHR capabilities) each is billed under.
+- name: Allocation
+  description: Map Solv spend to the clinics, urgent care sites, or health-system service lines generating the bookings and EHR syncs.
+- name: Optimization
+  description: Consolidate EHR interoperability and Final Mile network participation across locations to avoid redundant per-location provisioning.
+- name: Accountability
+  description: Assign contract ownership to clinic operations/marketing; review annual or quarterly renewal terms against actual booking volume and location count.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
