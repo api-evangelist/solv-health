@@ -99,6 +99,8 @@ apis:
     Solv's implementation team per EHR vendor and per customer.
   endpointsModeled: true
 common:
+- type: DomainSecurity
+  url: security/solv-health-domain-security.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/solvhealth
 - type: Website
