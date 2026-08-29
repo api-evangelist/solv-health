@@ -1,5 +1,7 @@
 aid: solv-health
 url: https://raw.githubusercontent.com/api-evangelist/solv-health/refs/heads/main/apis.yml
+x-api-posture: docs-gated
+x-api-posture-basis: observed
 name: Solv Health
 kind: company
 description: Solv Health operates a consumer marketplace (solvhealth.com and the Solv
