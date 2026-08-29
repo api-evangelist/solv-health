@@ -17,6 +17,17 @@ description: Solv Health operates a consumer marketplace (solvhealth.com and the
   Allscripts, DrChrono, eClinicalWorks, Experity, and NextGen. None of these
   capabilities have a published base URL, endpoint reference, or self-serve API key
   signup; access is provisioned per partner/clinic inside a commercial contract.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown
