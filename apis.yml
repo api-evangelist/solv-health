@@ -80,6 +80,11 @@ apis:
 - aid: solv-health:solv-health-booking-widget-api
   name: Solv Booking Widget API
   tags:
+  - Widgets
+  - Scheduling
+  - Website Embed
+  - Patient Experience
+  tags_raw:
   - Widget
   - Scheduling
   - Website Embed
