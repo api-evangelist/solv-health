@@ -87,3 +87,27 @@ plans:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units: []
+  plans:
+  - name: Consumer Marketplace (Free)
+    access: free
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Clinic / Health System (Custom)
+    access: enterprise
+    model: free
+    model_how: derived
+    units:
+    - other
+    periods:
+    - year
