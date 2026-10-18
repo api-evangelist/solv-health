@@ -107,6 +107,11 @@ apis:
 - aid: solv-health:solv-health-ehr-interoperability-api
   name: Solv EHR Interoperability API
   tags:
+  - Electronic Health Records
+  - HL7
+  - FHIR
+  - Sync
+  tags_raw:
   - EHR
   - EMR
   - HL7
